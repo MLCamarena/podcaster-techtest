@@ -5,6 +5,7 @@ import PodcastPage from '@pages/podcast';
 import EpisodePage from '@pages/episode';
 import LayoutWrapper from '@components/Layout/LayoutWrapper';
 import NavigationControllerWrapper from '@hocs/NavigationControllerWrapper';
+import FallbackPage from '@pages/fallback';
 
 export const routesDefinition: RouteObject[] = [
   {
@@ -18,7 +19,11 @@ export const routesDefinition: RouteObject[] = [
         </NavigationControllerWrapper>
       </>
     ),
-    errorElement: <h1>PERRO</h1>,
+    errorElement: (
+      <LayoutWrapper>
+        <FallbackPage />
+      </LayoutWrapper>
+    ),
     children: [
       { path: `${ROUTE_HOME}`, element: <HomePage /> },
       { path: `${ROUTE_PODCAST}/:podcastId`, element: <PodcastPage /> },

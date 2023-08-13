@@ -1,11 +1,12 @@
 import { FC, PropsWithChildren } from 'react';
-import { Stack, StackProps } from '@mui/material';
+import { Stack } from '@mui/material';
 import Navbar from '@components/Navbar/Navbar';
 import EnvBanner from '@components-ui/EnvBanner/EnvBanner';
+import PageContainer from '@components-ui/PageContainer/PageContainer';
 
-const Container = ({ children }: StackProps) => {
+const Container: FC<PropsWithChildren> = ({ children }) => {
   return (
-    <Stack width='100%' maxWidth='960px' position='relative' pt='30px'>
+    <Stack id='container1' width='100%' position='relative' pt='30px'>
       {children}
     </Stack>
   );
@@ -16,7 +17,9 @@ const LayoutWrapper: FC<PropsWithChildren> = ({ children }) => {
     <Stack direction='column' minHeight='100vh'>
       {import.meta.env.DEV && <EnvBanner />}
       <Navbar />
-      <Container>{children}</Container>
+      <Container>
+        <PageContainer>{children}</PageContainer>
+      </Container>
     </Stack>
   );
 };
