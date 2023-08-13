@@ -3,7 +3,6 @@ import { persistor, store } from '@store/index';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import NavigationControllerWrapper from '@hocs/NavigationControllerWrapper';
 
 const theme = createTheme({
   palette: {
