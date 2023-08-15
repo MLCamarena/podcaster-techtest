@@ -1,11 +1,8 @@
 import { Episode } from '@models/episode.model';
+import Error from '@models/networkError.model';
 import { PodcastDetailed, PodcastListItem } from '@models/podcast.model';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-type Error = {
-  errorCode: number;
-  errorMsg: string;
-};
+import { mergePodcastList } from '@utils/podcast';
 
 type PodcastState = {
   loading: boolean;
@@ -29,13 +26,14 @@ const loading = createSlice({
       return {
         ...state,
         loading: true,
+        error: undefined,
       };
     },
     getPodcastListSuccess: (state, action: PayloadAction<PodcastListItem[]>) => {
       return {
         ...state,
         loading: false,
-        podcastList: action.payload,
+        podcastList: mergePodcastList(state.podcastList, action.payload),
         error: undefined,
       };
     },

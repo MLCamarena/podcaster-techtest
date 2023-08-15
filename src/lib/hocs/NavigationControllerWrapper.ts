@@ -1,4 +1,4 @@
-import { setNavigationLoading } from '@store/slices/loading.slice';
+import { setIsLoading } from '@store/slices/loading.slice';
 import { useEffect, useState, PropsWithChildren, FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
@@ -10,14 +10,14 @@ const NavigationControllerWrapper: FC<PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     setPreviousLocation(location.pathname);
-    dispatch(setNavigationLoading(true));
+    dispatch(setIsLoading(true));
     if (location.pathname === previousLocation) {
       setPreviousLocation('');
     }
   }, [location]);
 
   useEffect(() => {
-    dispatch(setNavigationLoading(false));
+    dispatch(setIsLoading(false));
   }, [previousLocation]);
 
   return children;

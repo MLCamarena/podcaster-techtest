@@ -12,7 +12,7 @@ export type PodcastDetailed = {
   name: string;
   artist: string;
   coverImage: string;
-  summary: string;
+  summary?: string;
   totalEpisodes: number;
   episodes: Episode[];
   lastFetch: number;

@@ -3,14 +3,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 const loading = createSlice({
   name: '[@LOADING]',
   initialState: {
-    navigationLoading: false,
+    isLoading: false,
   },
   reducers: {
-    setNavigationLoading: (state, action: PayloadAction<boolean>) => {
-      state.navigationLoading = action.payload;
+    setIsLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
     },
   },
 });
 
-export const { setNavigationLoading } = loading.actions;
+export const { setIsLoading } = loading.actions;
 export default loading.reducer;
