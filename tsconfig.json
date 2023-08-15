@@ -33,6 +33,6 @@
       "@config/*": ["src/lib/config/*"]
     },
   },
-  "include": ["src", "podcast.saga.ts"],
+  "include": ["src", "src/lib/store/sagas/podcast.saga.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

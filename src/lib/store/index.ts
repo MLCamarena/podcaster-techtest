@@ -7,7 +7,7 @@ import persistReducer from 'redux-persist/es/persistReducer';
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 
 import loading from './slices/loading.slice';
-import podcastSaga from '../../../podcast.saga';
+import podcastSaga from './sagas/podcast.saga';
 
 const persistConfig = {
   key: 'root',
