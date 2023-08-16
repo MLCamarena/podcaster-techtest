@@ -2,7 +2,7 @@ import PodcastCard from '@components-ui/PodcastCard/PodcastCard';
 import { ROUTE_PODCAST } from '@constants/routes';
 import { PodcastListItem } from '@models/podcast.model';
 import { Stack } from '@mui/material';
-import { selectedNavigationLoading } from '@store/selectors/loading.selectors';
+import { selectIsLoading } from '@store/selectors/loading.selectors';
 import { selectPodcastList } from '@store/selectors/podcastList.selector';
 import { getPodcastListRequest, setSelectedPodcast } from '@store/slices/podcast.slice';
 import { useEffect } from 'react';
@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router';
 
 const PodcastList = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectedNavigationLoading);
+  const isLoading = useSelector(selectIsLoading);
   const podcastList = useSelector(selectPodcastList);
   const navigate = useNavigate();
 

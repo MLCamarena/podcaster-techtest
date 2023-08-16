@@ -1,7 +1,8 @@
+import EpisodeList from '@components/PodcastDetails/EpisodeList';
 import { FC } from 'react';
 
 const PodcastPage: FC = () => {
-  return <h1>Podcast page1</h1>;
+  return <EpisodeList />;
 };
 
 export default PodcastPage;

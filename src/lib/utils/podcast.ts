@@ -40,6 +40,7 @@ const mapApiPodcastList = (apiPodcastList: APIPodcastListResponse): PodcastListI
     name: item['im:name'].label,
     artist: item['im:artist'].label,
     coverImage: getBiggestImage(item['im:image']),
+    summary: item.summary.label,
   }));
 };
 
@@ -57,7 +58,6 @@ const mapApiEpisodes = (episodes: APIPodcastEpisode[]): Episode[] => {
 };
 
 const mapApiPodcastDetail = (apiPodcastDetail: APIPodcastDetailResponse, currentPodcast: Podcast): PodcastDetailed => {
-  console.log(apiPodcastDetail);
   const { results } = apiPodcastDetail;
   const podcastDetails = results.find(
     (item: APIPodcastDetailResult) => item.wrapperType === 'track',

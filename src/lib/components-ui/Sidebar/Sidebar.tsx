@@ -31,7 +31,15 @@ const Sidebar: FC<SiderbarProps> = ({ podcast }) => {
         </Typography>
       </Stack>
       <Divider orientation='horizontal' variant='middle' flexItem />
-      <Box>{podcast?.summary || 'AAAAAAAAAAAAAAAAAAAAA'}</Box>
+      <Box
+        px={1.5}
+        sx={{
+          maxWidth: '250px',
+          wordBreak: 'break-word',
+        }}
+      >
+        {podcast?.summary}
+      </Box>
     </Paper>
   );
 };

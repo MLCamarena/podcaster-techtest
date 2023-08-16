@@ -7,10 +7,12 @@ const PodcastService = {
   getList: () =>
     fetch(`${corsHelperUrl}${encodeURIComponent(podcastListUrl)}`, {
       mode: 'cors',
+      cache: 'no-cache',
     }),
   getDetails: (id: string) =>
     fetch(`${corsHelperUrl}${encodeURIComponent(`${detailsListUrl}${id}${detailParams}`)}`, {
       mode: 'cors',
+      cache: 'no-cache',
     }),
 };
 

@@ -5,7 +5,7 @@ export type Podcast = {
   name: string;
   artist: string;
   coverImage: string;
-  summary?: string;
+  summary: string;
 };
 
 export type PodcastDetailed = {
@@ -13,7 +13,7 @@ export type PodcastDetailed = {
   name: string;
   artist: string;
   coverImage: string;
-  summary?: string;
+  summary: string;
   totalEpisodes: number;
   episodes: Episode[];
   lastFetch: number;
