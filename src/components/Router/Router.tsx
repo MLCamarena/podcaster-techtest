@@ -4,7 +4,7 @@ import { ROUTE_EPISODE, ROUTE_HOME, ROUTE_PODCAST } from '@constants/routes';
 import PodcastPage from '@pages/podcast';
 import EpisodePage from '@pages/episode';
 import LayoutWrapper from '@components/Layout/LayoutWrapper';
-import NavigationControllerWrapper from '@hocs/NavigationControllerWrapper';
+// import NavigationControllerWrapper from '@hocs/NavigationControllerWrapper';
 import FallbackPage from '@pages/fallback';
 
 export const routesDefinition: RouteObject[] = [
@@ -12,11 +12,9 @@ export const routesDefinition: RouteObject[] = [
     path: '/',
     element: (
       <>
-        <NavigationControllerWrapper>
-          <LayoutWrapper>
-            <Outlet />
-          </LayoutWrapper>
-        </NavigationControllerWrapper>
+        <LayoutWrapper>
+          <Outlet />
+        </LayoutWrapper>
       </>
     ),
     errorElement: (
