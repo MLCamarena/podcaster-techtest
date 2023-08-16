@@ -9,6 +9,7 @@ const PodcastPaperCard = styled(Paper)({
   height: 'auto',
   minHeight: '40px',
   position: 'relative',
+  cursor: 'pointer',
 });
 
 export default PodcastPaperCard;

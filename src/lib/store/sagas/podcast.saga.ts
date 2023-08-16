@@ -1,5 +1,14 @@
-import { getPodcastListRequest } from '@store/slices/podcast.slice';
-import { spawn, takeLatest } from 'redux-saga/effects';
+import { APIPodcastListResponse } from '@models/api/podcasts';
+import CustomError from '@models/networkError.model';
+import { PodcastListItem } from '@models/podcast.model';
+import { selectLastListFetch, selectPodcastList } from '@store/selectors/podcastList.selector';
+import PodcastService from '@store/services/PodcastService';
+import { setIsLoading } from '@store/slices/loading.slice';
+import { getPodcastListError, getPodcastListRequest, getPodcastListSuccess } from '@store/slices/podcast.slice';
+import { check24h } from '@utils/date';
+import { mapApiPodcastList } from '@utils/podcast';
+import { toast } from 'react-toastify';
+import { call, put, select, spawn, takeLatest } from 'redux-saga/effects';
 
 export default function* podcastSaga() {
   yield spawn(watchKillersAsync);
@@ -11,8 +20,28 @@ function* watchKillersAsync() {
 
 function* getPodcastList(): any {
   try {
-    console.log(import.meta.env.VITE_API_URL);
+    yield put(setIsLoading(true));
+    const currentList: PodcastListItem[] = yield select(selectPodcastList);
+    const lastUpdate: number = yield select(selectLastListFetch);
+    if (!currentList.length || (lastUpdate && check24h(lastUpdate))) {
+      const res = yield call(PodcastService.getList);
+      const data = yield res.json();
+      if (!res.ok) {
+        throw new Error(`Error HTTP ${res.status} : ${data.error}`);
+      }
+      const contents = yield data.contents;
+      const mappedResults = mapApiPodcastList(JSON.parse(contents) as APIPodcastListResponse);
+      yield put(getPodcastListSuccess(mappedResults));
+    }
+    yield put(setIsLoading(false));
   } catch (error) {
+    const errorMessage = error as CustomError;
+    yield put(setIsLoading(false));
+    yield put(getPodcastListError(errorMessage.message));
     console.log(error);
+    toast.error(errorMessage.message, {
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 3000,
+    });
   }
 }

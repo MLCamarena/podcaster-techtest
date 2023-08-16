@@ -1,23 +1,18 @@
-// import { Podcast } from '@models/podcast.model';
+import { Podcast } from '@models/podcast.model';
 import { FC } from 'react';
 import PodcastPaperCard from './PodcastPaperCard';
 import PodcastCardImage from './PodcastCardImage';
 import PodcastCardResponsiveText from './PodcastCardResponsiveText';
+import { PaperProps } from '@mui/material';
 
-// type PodcastCardProps = {
-//   podcast: Podcast | null;
-// };
+type PodcastCardProps = {
+  podcast: Podcast;
+  onClick: (id: string) => void;
+};
 
-const PodcastCard: FC = () => {
-  const podcast = {
-    id: '1',
-    name: 'Podcast',
-    coverImage:
-      'https://yt3.googleusercontent.com/ytc/AOPolaTDYBTH6_SM_QfXOcFfX3epfvLVy52aTiaI7-XwEA=s900-c-k-c0x00ffffff-no-rj',
-    artist: 'Manuel L Camarena',
-  };
+const PodcastCard: FC<PodcastCardProps> = ({ podcast, onClick }) => {
   return (
-    <PodcastPaperCard>
+    <PodcastPaperCard onClick={() => onClick(podcast.id)}>
       <PodcastCardImage src={podcast.coverImage} alt={podcast.name} />
       <PodcastCardResponsiveText
         variant='body2'

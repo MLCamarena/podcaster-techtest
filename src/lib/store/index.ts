@@ -7,6 +7,8 @@ import persistReducer from 'redux-persist/es/persistReducer';
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 
 import loading from './slices/loading.slice';
+import podcasts from './slices/podcast.slice';
+
 import podcastSaga from './sagas/podcast.saga';
 
 const persistConfig = {
@@ -15,7 +17,7 @@ const persistConfig = {
   stateReconciler: autoMergeLevel2,
 };
 
-const reducers = combineReducers({ loading });
+const reducers = combineReducers({ loading, podcasts });
 
 const persistedReducer = persistReducer(persistConfig, reducers) as Reducer<ReturnType<typeof reducers>>;
 

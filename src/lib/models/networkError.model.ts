@@ -1,6 +1,5 @@
-type Error = {
-  errorCode: number;
-  errorMsg: string;
+type CustomError = {
+  message: string;
 };
 
-export default Error;
+export default CustomError;

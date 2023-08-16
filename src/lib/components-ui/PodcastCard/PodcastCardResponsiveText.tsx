@@ -2,7 +2,7 @@ import { Typography, styled } from '@mui/material';
 
 const PodcastCardResponsiveText = styled(Typography)({
   maxWidth: '200px',
-  lineBreak: 'anywhere',
+  lineBreak: 'auto',
   height: 'auto',
   textAlign: 'center',
 });
