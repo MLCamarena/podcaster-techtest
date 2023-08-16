@@ -1,3 +1,4 @@
+import { ROUTE_HOME } from '@constants/routes';
 import { Button, Stack, Typography } from '@mui/material';
 import { FC } from 'react';
 import { useNavigate } from 'react-router';
@@ -6,7 +7,7 @@ const FallbackPage: FC = () => {
   const navigate = useNavigate();
 
   const navigateHome = () => {
-    navigate('/');
+    navigate(ROUTE_HOME);
   };
 
   return (

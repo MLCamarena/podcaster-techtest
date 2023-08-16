@@ -1,23 +1,27 @@
 import PodcastCard from '@components-ui/PodcastCard/PodcastCard';
+import { ROUTE_PODCAST } from '@constants/routes';
 import { PodcastListItem } from '@models/podcast.model';
 import { Stack } from '@mui/material';
 import { selectedNavigationLoading } from '@store/selectors/loading.selectors';
 import { selectPodcastList } from '@store/selectors/podcastList.selector';
-import { getPodcastListRequest } from '@store/slices/podcast.slice';
+import { getPodcastListRequest, setSelectedPodcast } from '@store/slices/podcast.slice';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 
 const PodcastList = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectedNavigationLoading);
   const podcastList = useSelector(selectPodcastList);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getPodcastListRequest());
   }, []);
 
   const handlePodcastCardClick = (podcastId: string): void => {
-    console.log(podcastId);
+    dispatch(setSelectedPodcast(podcastId));
+    navigate(`${ROUTE_PODCAST}/${podcastId}`);
   };
 
   return (

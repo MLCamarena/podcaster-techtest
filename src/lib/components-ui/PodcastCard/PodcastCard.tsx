@@ -3,7 +3,6 @@ import { FC } from 'react';
 import PodcastPaperCard from './PodcastPaperCard';
 import PodcastCardImage from './PodcastCardImage';
 import PodcastCardResponsiveText from './PodcastCardResponsiveText';
-import { PaperProps } from '@mui/material';
 
 type PodcastCardProps = {
   podcast: Podcast;
