@@ -1,13 +1,7 @@
-import SidebarWrapper from '@components/Sidebar/SidebarWrapper';
-import { Box } from '@mui/material';
 import { FC } from 'react';
 
 const PodcastPage: FC = () => {
-  return (
-    <Box maxWidth='960px' mt={5}>
-      <SidebarWrapper></SidebarWrapper>
-    </Box>
-  );
+  return <h1>Podcast page1</h1>;
 };
 
 export default PodcastPage;

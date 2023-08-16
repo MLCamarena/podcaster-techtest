@@ -1,5 +1,14 @@
-import { APIImage, APIPodcastListItem, APIPodcastListResponse } from '@models/api/podcasts';
-import { PodcastListItem } from '@models/podcast.model';
+import {
+  APIImage,
+  APIPodcastDetailResponse,
+  APIPodcastDetailResult,
+  APIPodcastEpisode,
+  APIPodcastListItem,
+  APIPodcastListResponse,
+  APIPodcastWrapper,
+} from '@models/api/podcasts';
+import { Episode } from '@models/episode.model';
+import { PodcastListItem, Podcast, PodcastDetailed } from '@models/podcast.model';
 
 const getBiggestImage = (apiImages: APIImage[]): string => {
   return apiImages.reduce((prevImage: APIImage, currImage: APIImage) => {
@@ -34,4 +43,35 @@ const mapApiPodcastList = (apiPodcastList: APIPodcastListResponse): PodcastListI
   }));
 };
 
-export { mergePodcastList, mapApiPodcastList };
+const mapApiEpisodes = (episodes: APIPodcastEpisode[]): Episode[] => {
+  return episodes.map((ep: APIPodcastEpisode) => {
+    return {
+      id: `${ep.trackId}`,
+      episodeName: ep.trackName,
+      duration: ep.trackTimeMillis,
+      releaseDate: new Date(ep.releaseDate).getTime(),
+      rawDescription: ep.description,
+      mediaUrl: ep.episodeUrl,
+    };
+  });
+};
+
+const mapApiPodcastDetail = (apiPodcastDetail: APIPodcastDetailResponse, currentPodcast: Podcast): PodcastDetailed => {
+  console.log(apiPodcastDetail);
+  const { results } = apiPodcastDetail;
+  const podcastDetails = results.find(
+    (item: APIPodcastDetailResult) => item.wrapperType === 'track',
+  ) as APIPodcastWrapper;
+  const episodes = results.filter(
+    (item: APIPodcastDetailResult) => item.wrapperType === 'podcastEpisode',
+  ) as APIPodcastEpisode[];
+
+  return {
+    ...currentPodcast,
+    lastFetch: Date.now(),
+    totalEpisodes: podcastDetails.trackCount,
+    episodes: mapApiEpisodes(episodes),
+  };
+};
+
+export { mergePodcastList, mapApiPodcastList, mapApiPodcastDetail };

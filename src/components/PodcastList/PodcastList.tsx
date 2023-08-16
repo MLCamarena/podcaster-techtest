@@ -21,7 +21,7 @@ const PodcastList = () => {
 
   const handlePodcastCardClick = (podcastId: string): void => {
     dispatch(setSelectedPodcast(podcastId));
-    navigate(`${ROUTE_PODCAST}/${podcastId}`);
+    navigate(`/${ROUTE_PODCAST}/${podcastId}`);
   };
 
   return (

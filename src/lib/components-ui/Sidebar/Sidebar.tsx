@@ -22,7 +22,7 @@ const Sidebar: FC<SiderbarProps> = ({ podcast }) => {
     >
       <img src={podcast.coverImage} height='170px' width='170px' />
       <Divider orientation='horizontal' variant='middle' flexItem />
-      <Stack pl={1.5} width='250px'>
+      <Stack px={1.5} width='250px'>
         <Typography variant='h6' fontWeight='bold' maxWidth='250px'>
           {podcast.name}
         </Typography>

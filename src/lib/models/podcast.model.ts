@@ -5,6 +5,7 @@ export type Podcast = {
   name: string;
   artist: string;
   coverImage: string;
+  summary?: string;
 };
 
 export type PodcastDetailed = {
