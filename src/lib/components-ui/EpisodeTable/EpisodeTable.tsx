@@ -1,7 +1,9 @@
+import { ROUTE_EPISODE } from '@constants/routes';
 import { Episode } from '@models/episode.model';
 import { Paper, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import { getParsedDate, getParsedDuration } from '@utils/date';
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 type EpisodeTableProps = {
   episodes: Episode[];
@@ -28,7 +30,9 @@ const EpisodeTable: FC<EpisodeTableProps> = ({ episodes }) => {
               }}
             >
               <TableCell component='th' scope='row'>
-                {episode.episodeName}
+                <Link to={`${ROUTE_EPISODE}/${episode.id}`} relative='path'>
+                  {episode.episodeName}
+                </Link>
               </TableCell>
               <TableCell>{getParsedDate(episode.releaseDate)}</TableCell>
               <TableCell>{getParsedDuration(episode.duration)}</TableCell>
