@@ -46,7 +46,7 @@ const PodcastList = () => {
           alignItems='center'
           spacing={2}
         >
-          <Chip icon={<PodcastsIcon />} label={list.length} color='primary' />
+          <Chip data-cy='podcastsChip' icon={<PodcastsIcon />} label={list.length} color='primary' />
           <TextField
             size='small'
             value={searchTerm}

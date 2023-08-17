@@ -28,7 +28,7 @@ const Sidebar: FC<SiderbarProps> = ({ podcast }) => {
       <Divider orientation='horizontal' variant='middle' flexItem />
       <Stack px={1.5} width='250px'>
         <Link to={`/${ROUTE_PODCAST}/${podcast.id}`} className='hidden-link'>
-          <Typography variant='h6' fontWeight='bold' maxWidth='250px'>
+          <Typography variant='h6' fontWeight='bold' maxWidth='250px' data-cy='podcast-sidebar-title'>
             {podcast.name}
           </Typography>
         </Link>

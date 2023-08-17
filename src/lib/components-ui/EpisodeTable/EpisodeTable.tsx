@@ -35,7 +35,7 @@ const EpisodeTable: FC<EpisodeTableProps> = ({ episodes, episodeCount }) => {
                 backgroundColor: index % 2 === 0 ? 'whitesmoke' : 'inherit',
               }}
             >
-              <TableCell component='th' scope='row'>
+              <TableCell component='th' scope='row' data-cy={episode.id}>
                 <Link to={`${ROUTE_EPISODE}/${episode.id}`} relative='path'>
                   {episode.episodeName}
                 </Link>
