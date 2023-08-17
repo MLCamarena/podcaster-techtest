@@ -8,6 +8,7 @@ import { FC, PropsWithChildren, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 
+// Wrapper use to persist the sidebar
 const DetailsWrapper: FC<PropsWithChildren> = ({ children }) => {
   const { podcastId } = useParams();
   const selectedPodcast = useSelector(selectSelectedPodcast);
@@ -15,6 +16,10 @@ const DetailsWrapper: FC<PropsWithChildren> = ({ children }) => {
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
+  /**
+   * This is used to secure if navigation was made in the url field in browser
+   * and last update to update if list was still loading from this case
+   */
   useEffect(() => {
     podcastId && dispatch(getPodcastDetailedRequest(podcastId));
   }, [podcastId, lastUpdate]);
@@ -28,6 +33,7 @@ const DetailsWrapper: FC<PropsWithChildren> = ({ children }) => {
         alignItems={{ xs: 'center', md: 'start' }}
         spacing={5}
       >
+        {/* Custom loading component */}
         {isLoading && (
           <img
             className='responsiveImage rotate'

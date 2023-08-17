@@ -18,15 +18,28 @@ import { call, put, select, spawn, takeEvery } from 'redux-saga/effects';
 
 type PodcastDetailActionType = { type: string; payload: string };
 
+/**
+ * Podcast saga root
+ */
 export default function* podcastSaga() {
   yield spawn(watchKillersAsync);
 }
 
+/**
+ * Action listener function
+ */
 function* watchKillersAsync() {
   yield takeEvery(getPodcastListRequest.type, getPodcastList);
   yield takeEvery(getPodcastDetailedRequest.type, getPodcastDetails);
 }
 
+/**
+ * Podcast details saga.
+ * First, check if there is any selected podcast in current list, also used to check if there is any list.
+ * If not, it will dispatch the action to get the list first (its used if a absolute navigation to this route is made directly in the browser url search)
+ * If there is a podcast in the list and its already detailed and after check if 24h from last fetch, it returns the same element without new requests
+ * if not, a request is made and then dispatched to reducer
+ */
 function* getPodcastDetails({ payload }: PodcastDetailActionType): any {
   try {
     yield put(setIsLoading(true));
@@ -61,6 +74,12 @@ function* getPodcastDetails({ payload }: PodcastDetailActionType): any {
   }
 }
 
+/**
+ * Podcast list saga.
+ * First, check if there is a list and if 24h from last fetch.
+ * If there is list and persistence is valid, it returns the same list without new requests
+ * if not, a request is made and then dispatched to reducer
+ */
 function* getPodcastList(): any {
   try {
     yield put(setIsLoading(true));
