@@ -1,12 +1,12 @@
 import Appbar from '@components-ui/Appbar/Appbar';
 import { ROUTE_HOME } from '@constants/routes';
 import { Toolbar, Stack, Avatar, Box, CircularProgress, Typography } from '@mui/material';
-import { selectedNavigationLoading } from '@store/selectors/loading.selectors';
+import { selectIsLoading } from '@store/selectors/loading.selectors';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-  const isNavigationLoading = useSelector(selectedNavigationLoading);
+  const isLoading = useSelector(selectIsLoading);
   return (
     <Appbar color='secondary' position='static'>
       <Toolbar
@@ -24,7 +24,7 @@ const Navbar = () => {
             </Typography>
           </Link>
           <Box flexGrow={1}></Box>
-          {isNavigationLoading && <CircularProgress size={30} thickness={8} />}
+          {isLoading && <CircularProgress size={30} thickness={8} />}
         </Stack>
       </Toolbar>
     </Appbar>

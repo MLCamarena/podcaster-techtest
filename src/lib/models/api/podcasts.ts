@@ -16,6 +16,9 @@ type APIPodcastListItem = {
   'im:artist': {
     label: string;
   };
+  summary: {
+    label: string;
+  };
 };
 
 type APIPodcastListFeed = {
@@ -26,4 +29,35 @@ type APIPodcastListResponse = {
   feed: APIPodcastListFeed;
 };
 
-export type { APIImage, APIPodcastListItem, APIPodcastListFeed, APIPodcastListResponse };
+type APIPodcastWrapper = {
+  trackCount: number;
+  wrapperType: 'track';
+};
+
+type APIPodcastEpisode = {
+  wrapperType: 'podcastEpisode';
+  trackId: number;
+  trackName: string;
+  trackTimeMillis: number;
+  releaseDate: string;
+  description: string;
+  episodeUrl: string;
+};
+
+type APIPodcastDetailResult = APIPodcastWrapper | APIPodcastEpisode;
+
+type APIPodcastDetailResponse = {
+  resultCount: number;
+  results: APIPodcastDetailResult[];
+};
+
+export type {
+  APIImage,
+  APIPodcastListItem,
+  APIPodcastListFeed,
+  APIPodcastListResponse,
+  APIPodcastDetailResponse,
+  APIPodcastDetailResult,
+  APIPodcastWrapper,
+  APIPodcastEpisode,
+};

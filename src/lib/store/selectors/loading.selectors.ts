@@ -3,6 +3,6 @@ import { createSelector } from '@reduxjs/toolkit';
 
 const getLoadingContext = (state: RootState) => state.loading;
 
-const selectedNavigationLoading = createSelector(getLoadingContext, (loadingContext) => loadingContext.isLoading);
+const selectIsLoading = createSelector(getLoadingContext, (loadingContext) => loadingContext.isLoading);
 
-export { selectedNavigationLoading };
+export { selectIsLoading };

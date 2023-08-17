@@ -6,10 +6,11 @@ import EpisodePage from '@pages/episode';
 import LayoutWrapper from '@components/Layout/LayoutWrapper';
 // import NavigationControllerWrapper from '@hocs/NavigationControllerWrapper';
 import FallbackPage from '@pages/fallback';
+import DetailsWrapper from '@components/PodcastDetails/DetailsWrapper';
 
 export const routesDefinition: RouteObject[] = [
   {
-    path: '/',
+    path: `${ROUTE_HOME}`,
     element: (
       <>
         <LayoutWrapper>
@@ -24,10 +25,20 @@ export const routesDefinition: RouteObject[] = [
     ),
     children: [
       { path: `${ROUTE_HOME}`, element: <HomePage /> },
-      { path: `${ROUTE_PODCAST}/:podcastId`, element: <PodcastPage /> },
       {
-        path: `${ROUTE_PODCAST}/:podcastId${ROUTE_EPISODE}/:episodeId`,
-        element: <EpisodePage />,
+        path: `/${ROUTE_PODCAST}/:podcastId`,
+        element: (
+          <DetailsWrapper>
+            <Outlet />
+          </DetailsWrapper>
+        ),
+        children: [
+          { path: '', element: <PodcastPage /> },
+          {
+            path: `${ROUTE_EPISODE}/:episodeId`,
+            element: <EpisodePage />,
+          },
+        ],
       },
     ],
   },

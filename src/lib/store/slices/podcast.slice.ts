@@ -45,10 +45,11 @@ const loading = createSlice({
         selectedPodcast: action.payload,
       };
     },
-    getPodcastDetailedRequest: (state) => {
+    getPodcastDetailedRequest: (state, action: PayloadAction<string>) => {
       return {
         ...state,
         error: undefined,
+        selectedPodcast: action.payload || undefined,
       };
     },
     getPodcastDetailedSuccess: (state, action: PayloadAction<PodcastDetailed>) => {
@@ -57,10 +58,9 @@ const loading = createSlice({
         error: undefined,
         podcastList: state.podcastList.map((item: PodcastListItem) => {
           if (item.id === action.payload.id) {
-            const { summary, totalEpisodes, episodes, lastFetch } = action.payload;
+            const { totalEpisodes, episodes, lastFetch } = action.payload;
             return {
               ...item,
-              summary,
               totalEpisodes,
               episodes,
               lastFetch,
