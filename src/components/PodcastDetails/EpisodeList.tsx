@@ -7,12 +7,12 @@ import { FC } from 'react';
 import { useSelector } from 'react-redux';
 
 const EpisodeList: FC = () => {
-  const selectedPodcast = useSelector(selectSelectedPodcast);
+  const selectedPodcast = useSelector(selectSelectedPodcast) as PodcastDetailed;
 
   return (
     <Stack direction='column' spacing={3} alignItems='center'>
-      <EpisodeCount episodeCount={(selectedPodcast as PodcastDetailed).totalEpisodes} />
-      <EpisodeTable episodes={(selectedPodcast as PodcastDetailed).episodes} />
+      <EpisodeCount episodeCount={selectedPodcast.totalEpisodes} />
+      <EpisodeTable episodes={selectedPodcast.episodes} episodeCount={selectedPodcast.totalEpisodes} />
     </Stack>
   );
 };
