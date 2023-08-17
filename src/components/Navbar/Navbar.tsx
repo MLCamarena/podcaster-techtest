@@ -19,7 +19,7 @@ const Navbar = () => {
         <Stack width='100%' maxWidth='960px' direction='row' alignItems='center' spacing={2}>
           <Avatar alt='Podcast Icon' src='/images/mlcamarena_podcast_logo.png' />
           <Link to={ROUTE_HOME} className='hidden-link'>
-            <Typography variant='h6' fontWeight='bold'>
+            <Typography variant='h6' fontWeight='bold' data-cy='app-title'>
               Podcaster
             </Typography>
           </Link>

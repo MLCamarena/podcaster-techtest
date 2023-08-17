@@ -11,8 +11,8 @@ type PodcastCardProps = {
 
 const PodcastCard: FC<PodcastCardProps> = ({ podcast, onClick }) => {
   return (
-    <PodcastPaperCard onClick={() => onClick(podcast.id)}>
-      <PodcastCardImage src={podcast.coverImage} alt={podcast.name} />
+    <PodcastPaperCard onClick={() => onClick(podcast.id)} data-cy={`podcast-card-${podcast.id}`}>
+      <PodcastCardImage data-cy={podcast.id} src={podcast.coverImage} alt={podcast.name} />
       <PodcastCardResponsiveText
         variant='body2'
         gutterBottom
