@@ -37,23 +37,25 @@ const PodcastList = () => {
 
   return (
     <>
-      <Stack
-        sx={{ marginBottom: 10 }}
-        width='100%'
-        direction='row'
-        justifyContent='flex-end'
-        alignItems='center'
-        spacing={2}
-      >
-        <Chip icon={<PodcastsIcon />} label={list.length} color='primary' />
-        <TextField
-          size='small'
-          value={searchTerm}
-          onChange={handleSearchFieldChange}
-          label='Filter podcasts'
-          variant='outlined'
-        />
-      </Stack>
+      {!isLoading && (
+        <Stack
+          sx={{ marginBottom: 10 }}
+          width='100%'
+          direction='row'
+          justifyContent='flex-end'
+          alignItems='center'
+          spacing={2}
+        >
+          <Chip icon={<PodcastsIcon />} label={list.length} color='primary' />
+          <TextField
+            size='small'
+            value={searchTerm}
+            onChange={handleSearchFieldChange}
+            label='Filter podcasts'
+            variant='outlined'
+          />
+        </Stack>
+      )}
 
       <Stack
         direction={{ xs: 'column', sm: 'row' }}
