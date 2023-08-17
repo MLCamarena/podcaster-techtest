@@ -31,21 +31,24 @@ function* getPodcastDetails({ payload }: PodcastDetailActionType): any {
   try {
     yield put(setIsLoading(true));
     const podcast: PodcastListItem = yield select(selectPodcastFromList(payload));
-    if (
-      !('lastFetch' in podcast) ||
-      ('lastFetch' in podcast && checkMaxAgePersistence((podcast as PodcastDetailed).lastFetch))
-    ) {
-      const res = yield call(PodcastService.getDetails, payload);
-      console.log(res);
-      if (!res.ok) {
-        throw new Error(`Error HTTP ${res.status}`);
+    if (podcast) {
+      if (
+        !('lastFetch' in podcast) ||
+        ('lastFetch' in podcast && checkMaxAgePersistence((podcast as PodcastDetailed).lastFetch))
+      ) {
+        const res = yield call(PodcastService.getDetails, payload);
+        if (!res.ok) {
+          throw new Error(`Error HTTP ${res.status}`);
+        }
+        const data = yield res.json();
+        const contents = yield data.contents;
+        const mappedResult = mapApiPodcastDetail(JSON.parse(contents) as APIPodcastDetailResponse, podcast);
+        yield put(getPodcastDetailedSuccess(mappedResult));
       }
-      const data = yield res.json();
-      const contents = yield data.contents;
-      const mappedResult = mapApiPodcastDetail(JSON.parse(contents) as APIPodcastDetailResponse, podcast);
-      yield put(getPodcastDetailedSuccess(mappedResult));
+      yield put(setIsLoading(false));
+    } else {
+      yield put(getPodcastListRequest());
     }
-    yield put(setIsLoading(false));
   } catch (error) {
     const errorMessage = error as CustomError;
     yield put(setIsLoading(false));

@@ -45,6 +45,12 @@ const loading = createSlice({
         selectedPodcast: action.payload,
       };
     },
+    setSelectedEpisode: (state, action: PayloadAction<string>) => {
+      return {
+        ...state,
+        selectedEpisode: action.payload,
+      };
+    },
     getPodcastDetailedRequest: (state, action: PayloadAction<string>) => {
       return {
         ...state,
@@ -86,5 +92,6 @@ export const {
   getPodcastDetailedRequest,
   getPodcastDetailedSuccess,
   getPodcastDetailedError,
+  setSelectedEpisode,
 } = loading.actions;
 export default loading.reducer;

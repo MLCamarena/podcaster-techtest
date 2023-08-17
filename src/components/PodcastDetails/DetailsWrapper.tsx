@@ -2,7 +2,7 @@ import Sidebar from '@components-ui/Sidebar/Sidebar';
 import { PodcastDetailed } from '@models/podcast.model';
 import { Box, Stack } from '@mui/material';
 import { selectIsLoading } from '@store/selectors/loading.selectors';
-import { selectSelectedPodcast } from '@store/selectors/podcastList.selector';
+import { selectLastListFetch, selectSelectedPodcast } from '@store/selectors/podcastList.selector';
 import { getPodcastDetailedRequest } from '@store/slices/podcast.slice';
 import { FC, PropsWithChildren, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,12 +11,13 @@ import { useParams } from 'react-router';
 const DetailsWrapper: FC<PropsWithChildren> = ({ children }) => {
   const { podcastId } = useParams();
   const selectedPodcast = useSelector(selectSelectedPodcast);
+  const lastUpdate = useSelector(selectLastListFetch);
   const isLoading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
     podcastId && dispatch(getPodcastDetailedRequest(podcastId));
-  }, [podcastId]);
+  }, [podcastId, lastUpdate]);
 
   return (
     <Box maxWidth='960px' mt={5}>
@@ -34,7 +35,7 @@ const DetailsWrapper: FC<PropsWithChildren> = ({ children }) => {
             src='/images/mlcamarena_podcast_logo.png'
           />
         )}
-        {!!selectedPodcast && !isLoading && (
+        {!!selectedPodcast && !isLoading && 'lastFetch' in selectedPodcast && (
           <>
             <Stack width='275px'>
               <Sidebar podcast={selectedPodcast as PodcastDetailed} />
