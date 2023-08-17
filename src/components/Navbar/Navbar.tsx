@@ -24,6 +24,7 @@ const Navbar = () => {
             </Typography>
           </Link>
           <Box flexGrow={1}></Box>
+          {/* Top right spinner when something is loading */}
           {isLoading && <CircularProgress size={30} thickness={8} />}
         </Stack>
       </Toolbar>

@@ -15,6 +15,7 @@ const Container: FC<PropsWithChildren> = ({ children }) => {
 const LayoutWrapper: FC<PropsWithChildren> = ({ children }) => {
   return (
     <Stack direction='column' minHeight='100vh'>
+      {/* Banner to show in DEV environment */}
       {import.meta.env.DEV && <EnvBanner />}
       <Navbar />
       <Container>

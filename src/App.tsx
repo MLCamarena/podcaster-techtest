@@ -5,6 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { ToastContainer } from 'react-toastify';
 
+// Custom color and font theme
 const theme = createTheme({
   palette: {
     mode: 'light',
