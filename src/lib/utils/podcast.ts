@@ -101,4 +101,4 @@ const mapApiPodcastDetail = (apiPodcastDetail: APIPodcastDetailResponse, current
   };
 };
 
-export { mergePodcastList, mapApiPodcastList, mapApiPodcastDetail };
+export { mergePodcastList, mapApiPodcastList, mapApiPodcastDetail, getBiggestImage, mapApiEpisodes };

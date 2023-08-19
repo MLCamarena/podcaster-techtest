@@ -3,7 +3,7 @@ import { PodcastDetailed, PodcastListItem } from '@models/podcast.model';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { mergePodcastList } from '@utils/podcast';
 
-type PodcastState = {
+export type PodcastState = {
   podcastList: PodcastListItem[];
   error?: string;
   lastFetch?: number;
@@ -15,7 +15,7 @@ const initialState: PodcastState = {
   podcastList: [],
 };
 
-const loading = createSlice({
+const podcasts = createSlice({
   name: '[@PODCAST]',
   initialState,
   reducers: {
@@ -93,5 +93,5 @@ export const {
   getPodcastDetailedSuccess,
   getPodcastDetailedError,
   setSelectedEpisode,
-} = loading.actions;
-export default loading.reducer;
+} = podcasts.actions;
+export default podcasts.reducer;
