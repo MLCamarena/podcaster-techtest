@@ -40,7 +40,7 @@ function* watchKillersAsync() {
  * If there is a podcast in the list and its already detailed and after check if 24h from last fetch, it returns the same element without new requests
  * if not, a request is made and then dispatched to reducer
  */
-function* getPodcastDetails({ payload }: PodcastDetailActionType): any {
+export function* getPodcastDetails({ payload }: PodcastDetailActionType): any {
   try {
     yield put(setIsLoading(true));
     const podcast: PodcastListItem = yield select(selectPodcastFromList(payload));
@@ -80,12 +80,12 @@ function* getPodcastDetails({ payload }: PodcastDetailActionType): any {
  * If there is list and persistence is valid, it returns the same list without new requests
  * if not, a request is made and then dispatched to reducer
  */
-function* getPodcastList(): any {
+export function* getPodcastList(): any {
   try {
     yield put(setIsLoading(true));
     const currentList: PodcastListItem[] = yield select(selectPodcastList);
     const lastUpdate: number = yield select(selectLastListFetch);
-    if (!currentList.length || (lastUpdate && checkMaxAgePersistence(lastUpdate))) {
+    if (!currentList?.length || (lastUpdate && checkMaxAgePersistence(lastUpdate))) {
       const res = yield call(PodcastService.getList);
       const data = yield res.json();
       if (!res.ok) {
