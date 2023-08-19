@@ -56,7 +56,7 @@ npm run dev:coverage
 
 También podrán encontrar la aplicación desplegada en el siguiente link:
 
-[LinkPlaceholder]()
+https://podcaster-techtest.vercel.app/
 
 ## Arquitectura
 
