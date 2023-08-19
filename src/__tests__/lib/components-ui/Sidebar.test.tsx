@@ -2,7 +2,6 @@ import Sidebar from '@components-ui/Sidebar/Sidebar';
 import { PodcastDetailed } from '@models/podcast.model';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
-import { vi } from 'vitest';
 
 describe('Sidebar', () => {
   const podcast: PodcastDetailed = {
