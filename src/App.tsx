@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Router from '@components/Router/Router';
+import { persistor, store } from '@store/index';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ToastContainer } from 'react-toastify';
 
-function App() {
-  const [count, setCount] = useState(0)
+// Custom color and font theme
+const theme = createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#333333',
+    },
+    secondary: {
+      main: '#EAEAEA',
+    },
+  },
+  typography: {
+    fontFamily: 'Monserrat, Helvetica, Arial, sans-serif',
+  },
+});
 
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <ThemeProvider theme={theme}>
+          <ToastContainer theme='colored' newestOnTop={false} pauseOnHover closeOnClick />
+          <Router />
+        </ThemeProvider>
+      </PersistGate>
+    </Provider>
+  );
+};
 
-export default App
+export default App;

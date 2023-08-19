@@ -1,12 +1,18 @@
 {
+  "ts-node": {
+    "compilerOptions": {
+      "module": "es2015",
+      "moduleResolution": "node",
+      "types": ["cypress", "@testing-library/cypress"]
+    }
+  },
   "compilerOptions": {
+    "types": ["cypress", "@testing-library/cypress"],
     "target": "ES2020",
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
-
-    /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
@@ -18,8 +24,21 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "./",
+    "paths": {
+      "@constants/*": ["src/lib/constants/*"],
+      "@pages/*": ["src/pages/*"],
+      "@components/*": ["src/components/*"],
+      "@components-ui/*": ["src/lib/components-ui/*"],
+      "@hocs/*": ["src/lib/hocs/*"],
+      "@hooks/*": ["src/lib/hooks/*"],
+      "@models/*": ["src/lib/models/*"],
+      "@store/*": ["src/lib/store/*"],
+      "@utils/*": ["src/lib/utils/*"],
+      "@config/*": ["src/lib/config/*"]
+    }
   },
-  "include": ["src"],
+  "include": ["src", "src/lib/store/sagas/podcast.saga.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
